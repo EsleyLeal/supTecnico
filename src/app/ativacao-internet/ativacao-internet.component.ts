@@ -4,6 +4,7 @@ import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectEquipamentoService } from '../services/select-equipamento.service';
 import { Equipamento } from '../enum/equipamento';
+import { LimparAtendimentoService } from '../services/limpar-atendimento.service';
 
 declare var bootstrap: any;
 
@@ -17,11 +18,23 @@ declare var bootstrap: any;
   providers: [DatePipe]
 })
 
+
+
 export class AtivacaoInternetComponent implements OnInit {
 
   dataAtual: Date = new Date();
   dataFormatada: string = '';
-  constructor(private datePipe: DatePipe, private selectEquipamento: SelectEquipamentoService) { }
+
+  constructor(
+    private datePipe: DatePipe,
+    private selectEquipamento: SelectEquipamentoService,
+    private limparAtendimentoService: LimparAtendimentoService
+  ) { }
+
+
+  limparAtendimento() {
+    this.limparAtendimentoService.limparAtendimento(this);
+  }
 
   ngOnInit(): void {
     this.dataAtual = new Date;
@@ -225,25 +238,7 @@ copiarTexto() {
 }
 
 
-  limparAtendimento() {
-    if (confirm('Você realmente deseja limpar o atendimento?')) {
 
-      this.atendimentoGerado = '';
-      this.nomeDoCliente = '';
-      this.nomeDoTecnico = '';
-      this.aparelhoSelecionadoOnu = '';
-      this.aparelhoSelecionadoOntP = '';
-      this.senhaSelecionada = '';
-      this.patrimonioRoteador = '';
-      this.fttbSelecionado = '';
-      this.valorCtoCeip = '';
-      this.valorPortaCtoCeip = undefined;
-      this.textObservacao = '';
-
-    } else {
-      console.log('Ação de limpar atendimento cancelada.');
-    }
-  }
 
   private obterIdentificacaoCtoCeip(): string {
     return this.semIdentificacao
