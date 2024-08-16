@@ -55,14 +55,3 @@ button {
 .radio-group label {
   margin-right: 15px;
 }
-
-/* Aumentar a largura do modal */
-#resultadoModal .modal-dialog {
-  max-width: 40%; /* Aumenta a largura para 80% da tela */
-}
-
-/* Aumentar a altura do modal */
-#resultadoModal .modal-content {
-  height: 70vh; /* Aumenta a altura para 70% da altura da janela */
-  overflow: auto; /* Permite que o conteúdo interno role, se necessário */
-}
