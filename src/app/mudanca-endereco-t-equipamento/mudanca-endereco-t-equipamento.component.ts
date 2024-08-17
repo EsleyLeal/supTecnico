@@ -125,11 +125,11 @@ export class MudancaEnderecoTEquipamentoComponent implements OnInit {
     switch (valorSelecionado) {
       case 'cto':
         config = this.selectEquipamento.configurarCto();
-        this.semIdentificacao = false; // Certifique-se de que está configurado corretamente
+        this.semIdentificacao = false;
         break;
       case 'ctoSemIdentificacao':
         config = this.selectEquipamento.configurarCtoSemIdentificacao();
-        this.semIdentificacao = true; // Aqui sem identificação deve ser verdadeiro
+        this.semIdentificacao = true; 
         break;
       case 'ceip':
         config = this.selectEquipamento.configurarCeip();
@@ -156,19 +156,19 @@ export class MudancaEnderecoTEquipamentoComponent implements OnInit {
 
       console.log('Entrou na condição ONT');
       this.atendimentoGerado = `
-          ${this.dataFormatada}
+${this.dataFormatada}
 
-          ATIVAÇÃO REALIZADA COM SUCESSO!
+MUDANÇA DE ENDEREÇO + TROCA DE EQUIPAMENTO !
 
-          NOME DO CLIENTE: ${this.nomeDoCliente}
-          NOME DO TECNICO: ${this.nomeDoTecnico}
-          ${this.wifiIntegrado}
-          FHTT/SN DA ONU: ${this.aparelhoSelecionadoOnu}
-          PATRIMONIO DA ONU: ${this.aparelhoSelecionadoOntP}
-          ${this.obterIdentificacaoCtoCeip()}
-          SENHA DO WIFI: ${this.senhaSelecionada}
+NOME DO CLIENTE: ${this.nomeDoCliente}
+NOME DO TECNICO: ${this.nomeDoTecnico}
+NOVO EQUIPAMENTO: ${this.wifiIntegrado}
+FHTT/SN DA ONU: ${this.aparelhoSelecionadoOnu}
+${this.obterIdentificacaoCtoCeip()}
+PATRIMONIO DA ONU: ${this.aparelhoSelecionadoOntP}
+SENHA DO WIFI: ${this.senhaSelecionada}
 
-          ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
         `;
     } else if (this.tipoEquipamentoSelecionado === Equipamento.ONU_ROTEADOR &&
       this.nomeDoCliente && this.nomeDoTecnico && this.aparelhoSelecionadoOnu &&
@@ -176,35 +176,35 @@ export class MudancaEnderecoTEquipamentoComponent implements OnInit {
 
       console.log('Entrou na condição ONU');
       this.atendimentoGerado = `
-          ${this.dataFormatada}
+${this.dataFormatada}
 
-          ATIVAÇÃO REALIZADA COM SUCESSO!
+MUDANÇA DE ENDEREÇO + TROCA DE EQUIPAMENTO !
 
-          NOME DO CLIENTE: ${this.nomeDoCliente}
-          NOME DO TECNICO: ${this.nomeDoTecnico}
-          ${this.roteador}
-          FHTT DA ONU: ${this.aparelhoSelecionadoOnu}
-          ${this.obterIdentificacaoCtoCeip()}
-          PATRIMONIO DO ROTEADOR: ${this.patrimonioRoteador}
+NOME DO CLIENTE: ${this.nomeDoCliente}
+NOME DO TECNICO: ${this.nomeDoTecnico}
+NOVO EQUIPAMENTO: ${this.roteador}
+FHTT DA ONU: ${this.aparelhoSelecionadoOnu}
+${this.obterIdentificacaoCtoCeip()}
+PATRIMONIO DO ROTEADOR: ${this.patrimonioRoteador}
 
-          ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
         `;
     } else if (this.tipoEquipamentoSelecionado === Equipamento.FTTB &&
       this.nomeDoCliente && this.nomeDoTecnico && this.fttbSelecionado) {
 
       console.log('Entrou na condição FTTB');
       this.atendimentoGerado = `
-          ${this.dataFormatada}
+${this.dataFormatada}
 
-          ATIVAÇÃO REALIZADA COM SUCESSO!
+MUDANÇA DE ENDEREÇO + TROCA DE EQUIPAMENTO !
 
-          NOME DO CLIENTE: ${this.nomeDoCliente}
-          NOME DO TECNICO: ${this.nomeDoTecnico}
-          ${this.fttb}
-          ${this.obterIdentificacaoCtoCeip()}
-          PATRIMONIO DO ROTEADOR: ${this.fttbSelecionado}
+NOME DO CLIENTE: ${this.nomeDoCliente}
+NOME DO TECNICO: ${this.nomeDoTecnico}
+${this.fttb}
+${this.obterIdentificacaoCtoCeip()}
+PATRIMONIO DO ROTEADOR: ${this.fttbSelecionado}
 
-          ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
         `;
     } else {
       console.error('Erro: Equipamento não reconhecido ou informação insuficiente.');
@@ -237,8 +237,8 @@ export class MudancaEnderecoTEquipamentoComponent implements OnInit {
 
   private obterIdentificacaoCtoCeip(): string {
     return this.semIdentificacao
-      ? `SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
-      : `${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
+      ? `NOVA CTO SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
+      : `NOVA ${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
   }
 
 }
