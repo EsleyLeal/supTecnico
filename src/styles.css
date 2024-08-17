@@ -1,6 +1,27 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #ffffffde;
+  background-color: #023064;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 body
 {
   background-color: #115164;
+}
+
+h1
+{
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.1;
+  text-shadow: 3px 0px 2px rgba(17, 18, 18, .32), -2px -9px 22px rgba(246, 253, 254, .24);
+  color: #0340b8;
+  font-weight: 700;
 }
 
 #selectEquipamento
