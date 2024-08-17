@@ -102,7 +102,7 @@ export class MudancaEnderecoComponent implements OnInit {
         return;
     }
 
-    // Atribuir os valores retornados para as propriedades do componente
+    // Valores retornados para as propriedades do componente
     this.mostrarInputGP_WI = config.mostrarInputGP_WI || false;
     this.mostrarInputSenha = config.mostrarInputSenha || false;
     this.aparelhoSelecionadoOnu = config.aparelhoSelecionadoOnu || '';
@@ -119,11 +119,11 @@ export class MudancaEnderecoComponent implements OnInit {
     switch (valorSelecionado) {
       case 'cto':
         config = this.selectEquipamento.configurarCto();
-        this.semIdentificacao = false; // Certifique-se de que está configurado corretamente
+        this.semIdentificacao = false;
         break;
       case 'ctoSemIdentificacao':
         config = this.selectEquipamento.configurarCtoSemIdentificacao();
-        this.semIdentificacao = true; // Aqui sem identificação deve ser verdadeiro
+        this.semIdentificacao = true;
         break;
       case 'ceip':
         config = this.selectEquipamento.configurarCeip();
@@ -144,48 +144,48 @@ export class MudancaEnderecoComponent implements OnInit {
 
   gerarAtendimento() {
     // Verificação básica de que os campos essenciais estão preenchidos
-    if (this.nomeDoCliente && this.nomeDoTecnico ) {
+    if (this.nomeDoCliente && this.nomeDoTecnico) {
 
       console.log('Entrou na condição ONT');
       this.atendimentoGerado = `
-        ${this.dataFormatada}
+${this.dataFormatada}
 
-        MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
+MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
 
-        NOME DO CLIENTE: ${this.nomeDoCliente}
-        NOME DO TECNICO: ${this.nomeDoTecnico}
-        NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
+NOME DO CLIENTE: ${this.nomeDoCliente}
+NOME DO TECNICO: ${this.nomeDoTecnico}
+NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
 
-        ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
     } else if (this.nomeDoCliente && this.nomeDoTecnico) {
 
       console.log('Entrou na condição ONU');
       this.atendimentoGerado = `
-        ${this.dataFormatada}
+${this.dataFormatada}
 
-        MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
+MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
 
-        NOME DO CLIENTE: ${this.nomeDoCliente}
-        NOME DO TECNICO: ${this.nomeDoTecnico}
-        NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
+NOME DO CLIENTE: ${this.nomeDoCliente}
+NOME DO TECNICO: ${this.nomeDoTecnico}
+NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
 
 
-        ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
     } else if (this.nomeDoCliente && this.nomeDoTecnico) {
 
       console.log('Entrou na condição FTTB');
       this.atendimentoGerado = `
-        ${this.dataFormatada}
+${this.dataFormatada}
 
-        MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
+MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
 
-        NOME DO CLIENTE: ${this.nomeDoCliente}
-        NOME DO TECNICO: ${this.nomeDoTecnico}
-        NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
+NOME DO CLIENTE: ${this.nomeDoCliente}
+NOME DO TECNICO: ${this.nomeDoTecnico}
+NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
 
-        ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
     } else {
       console.error('Erro: Equipamento não reconhecido ou informação insuficiente.');
@@ -202,25 +202,23 @@ export class MudancaEnderecoComponent implements OnInit {
   }
 
 
-copiarTexto() {
-  const textoAtendimento = document.getElementById('atendimentoText')!;
-  const selecao = window.getSelection();
-  const intervalo = document.createRange();
-  intervalo.selectNodeContents(textoAtendimento);
-  selecao!.removeAllRanges();
-  selecao!.addRange(intervalo);
+  copiarTexto() {
+    const textoAtendimento = document.getElementById('atendimentoText')!;
+    const selecao = window.getSelection();
+    const intervalo = document.createRange();
+    intervalo.selectNodeContents(textoAtendimento);
+    selecao!.removeAllRanges();
+    selecao!.addRange(intervalo);
 
-  document.execCommand('copy');
-  alert('TEXTO COPIADO, ENVIE PARA O SUPORTE N1');
-}
-
-
+    document.execCommand('copy');
+    alert('TEXTO COPIADO, ENVIE PARA O SUPORTE N1');
+  }
 
 
   private obterIdentificacaoCtoCeip(): string {
     return this.semIdentificacao
-      ? `SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
-      : `${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
+      ? `NOVA CTO SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
+      : `NOVA ${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
   }
 
 }
