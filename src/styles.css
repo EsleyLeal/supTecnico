@@ -36,7 +36,7 @@ h1
 
 /* Aumentar a altura do modal */
 #resultadoModal .modal-content {
-  overflow: auto; /* Permite que o conteúdo interno role, se necessário */
+  overflow: auto;
 }
 
 /* Responsividade Mobile */
