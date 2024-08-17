@@ -7,6 +7,7 @@ import { AtivacaoInternetComponent } from './ativacao-internet/ativacao-internet
 import { MudancaEnderecoComponent } from './mudanca-endereco/mudanca-endereco.component';
 import { MudancaEnderecoTEquipamentoComponent } from './mudanca-endereco-t-equipamento/mudanca-endereco-t-equipamento.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

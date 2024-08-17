@@ -1,9 +1,32 @@
-<select class="form-select p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3" id="selectEquipamento" aria-label="Default select example" (change)="onSelectionChange($event)">
-  <option value="ativacao-internet">ATIVAÇÃO DE INTERNET</option>
-  <option value="mudanca-endereco">MUDANÇA DE ENDEREÇO</option>
-  <option value="mundanca-endereco-t-equipamento">MUDANÇA DE ENDEREÇO + TROCA DE EQUIPAMENTO</option>
-</select>
+<header class=" container-fluid bg-light p-3 border-bottom">
+  <div>
+    <div class="d-flex justify-content-center align-items-center text-center position-relative">
+      <h1 class="m-0 text-primary">SUPORTE TECNICO</h1>
+      <div class="redes-sociais position-absolute end-0 top-50 translate-middle-y">
+        <a href="https://www.linkedin.com/in/esleyleal/" class="linkedin-icon me-3" target="_blank">
+          <i class="fab fa-linkedin fs-3 text-primary"></i>
+        </a>
+        <a href="https://github.com/EsleyLeal" class="github-icon" target="_blank">
+          <i class="fab fa-github fs-3 text-dark"></i>
+        </a>
+      </div>
+    </div>
+    <!-- Seletor de Opções -->
+    <div class="select-container">
+      <select
+        class="form-select p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3"
+        id="selectEquipamento"
+        aria-label="Default select example"
+        (change)="onSelectionChange($event)">
+        <option value="ativacao-internet">ATIVAÇÃO DE INTERNET</option>
+        <option value="mudanca-endereco">MUDANÇA DE ENDEREÇO</option>
+        <option value="mundanca-endereco-t-equipamento">MUDANÇA DE ENDEREÇO + TROCA DE EQUIPAMENTO</option>
+      </select>
+    </div>
+  </div>
+</header>
 
+<!-- Componentes Angular Condicionais -->
 <app-ativacao-internet *ngIf="selectedOption === 'ativacao-internet'"></app-ativacao-internet>
 <app-mudanca-endereco *ngIf="selectedOption === 'mudanca-endereco'"></app-mudanca-endereco>
 <app-mudanca-endereco-t-equipamento *ngIf="selectedOption === 'mundanca-endereco-t-equipamento'"></app-mudanca-endereco-t-equipamento>
