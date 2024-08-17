@@ -35,6 +35,3 @@ Este projeto representa um avanço significativo na eficiência do atendimento t
 
 Se você deseja contribuir para este projeto, fique à vontade para abrir issues ou enviar pull requests com melhorias ou correções.
 
-## Licença
-
-Este projeto está sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para obter mais informações.
