@@ -236,8 +236,8 @@ ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
 
   private obterIdentificacaoCtoCeip(): string {
     return this.semIdentificacao
-      ? `NOVA CTO SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
-      : `NOVA ${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
+      ? `CTO SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
+      : `${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
   }
 
 }
