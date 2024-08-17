@@ -13,7 +13,7 @@ declare var bootstrap: any;
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './mudanca-endereco.component.html',
-  styleUrls: ['./mudanca-endereco.component.css'], // Corrigido styleUrl para styleUrls
+  styleUrls: ['./mudanca-endereco.component.css'],
   providers: [DatePipe]
 })
 export class MudancaEnderecoComponent implements OnInit {

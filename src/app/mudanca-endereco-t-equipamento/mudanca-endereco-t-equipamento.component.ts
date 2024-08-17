@@ -2,25 +2,22 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { SelectEquipamentoService } from '../services/select-equipamento.service';
 import { Equipamento } from '../enum/equipamento';
+import { SelectEquipamentoService } from '../services/select-equipamento.service';
 import { LimparAtendimentoService } from '../services/limpar-atendimento.service';
 
 declare var bootstrap: any;
 
-
 @Component({
-  selector: 'app-ativacao-internet',
+  selector: 'app-mudanca-endereco-t-equipamento',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './ativacao-internet.component.html',
-  styleUrl: './ativacao-internet.component.css',
-  providers: [DatePipe]
+  templateUrl: './mudanca-endereco-t-equipamento.component.html',
+  styleUrl: './mudanca-endereco-t-equipamento.component.css',
 })
 
+export class MudancaEnderecoTEquipamentoComponent implements OnInit {
 
-
-export class AtivacaoInternetComponent implements OnInit {
 
   dataAtual: Date = new Date();
   dataFormatada: string = '';
@@ -78,6 +75,7 @@ export class AtivacaoInternetComponent implements OnInit {
   mostrarInputSenha: boolean = false;
   mostrarInputPR: boolean = false;
   mostrarInputFTTB: boolean = false;
+
   mostrarInputGP_OR: boolean = false;
 
   atendimentoGerado: string = '';
@@ -153,61 +151,61 @@ export class AtivacaoInternetComponent implements OnInit {
   gerarAtendimento() {
     // Verificação básica de que os campos essenciais estão preenchidos
     if (this.tipoEquipamentoSelecionado === Equipamento.WIFI_INTEGRADO &&
-        this.nomeDoCliente && this.nomeDoTecnico && this.aparelhoSelecionadoOnu &&
-        this.aparelhoSelecionadoOntP && this.senhaSelecionada) {
+      this.nomeDoCliente && this.nomeDoTecnico && this.aparelhoSelecionadoOnu &&
+      this.aparelhoSelecionadoOntP && this.senhaSelecionada) {
 
       console.log('Entrou na condição ONT');
       this.atendimentoGerado = `
-        ${this.dataFormatada}
+          ${this.dataFormatada}
 
-        ATIVAÇÃO REALIZADA COM SUCESSO!
+          ATIVAÇÃO REALIZADA COM SUCESSO!
 
-        NOME DO CLIENTE: ${this.nomeDoCliente}
-        NOME DO TECNICO: ${this.nomeDoTecnico}
-        ${this.wifiIntegrado}
-        FHTT/SN DA ONU: ${this.aparelhoSelecionadoOnu}
-        PATRIMONIO DA ONU: ${this.aparelhoSelecionadoOntP}
-        ${this.obterIdentificacaoCtoCeip()}
-        SENHA DO WIFI: ${this.senhaSelecionada}
+          NOME DO CLIENTE: ${this.nomeDoCliente}
+          NOME DO TECNICO: ${this.nomeDoTecnico}
+          ${this.wifiIntegrado}
+          FHTT/SN DA ONU: ${this.aparelhoSelecionadoOnu}
+          PATRIMONIO DA ONU: ${this.aparelhoSelecionadoOntP}
+          ${this.obterIdentificacaoCtoCeip()}
+          SENHA DO WIFI: ${this.senhaSelecionada}
 
-        ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
-      `;
+          ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+        `;
     } else if (this.tipoEquipamentoSelecionado === Equipamento.ONU_ROTEADOR &&
-               this.nomeDoCliente && this.nomeDoTecnico && this.aparelhoSelecionadoOnu &&
-               this.patrimonioRoteador) {
+      this.nomeDoCliente && this.nomeDoTecnico && this.aparelhoSelecionadoOnu &&
+      this.patrimonioRoteador) {
 
       console.log('Entrou na condição ONU');
       this.atendimentoGerado = `
-        ${this.dataFormatada}
+          ${this.dataFormatada}
 
-        ATIVAÇÃO REALIZADA COM SUCESSO!
+          ATIVAÇÃO REALIZADA COM SUCESSO!
 
-        NOME DO CLIENTE: ${this.nomeDoCliente}
-        NOME DO TECNICO: ${this.nomeDoTecnico}
-        ${this.roteador}
-        FHTT DA ONU: ${this.aparelhoSelecionadoOnu}
-        ${this.obterIdentificacaoCtoCeip()}
-        PATRIMONIO DO ROTEADOR: ${this.patrimonioRoteador}
+          NOME DO CLIENTE: ${this.nomeDoCliente}
+          NOME DO TECNICO: ${this.nomeDoTecnico}
+          ${this.roteador}
+          FHTT DA ONU: ${this.aparelhoSelecionadoOnu}
+          ${this.obterIdentificacaoCtoCeip()}
+          PATRIMONIO DO ROTEADOR: ${this.patrimonioRoteador}
 
-        ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
-      `;
+          ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+        `;
     } else if (this.tipoEquipamentoSelecionado === Equipamento.FTTB &&
-               this.nomeDoCliente && this.nomeDoTecnico && this.fttbSelecionado) {
+      this.nomeDoCliente && this.nomeDoTecnico && this.fttbSelecionado) {
 
       console.log('Entrou na condição FTTB');
       this.atendimentoGerado = `
-        ${this.dataFormatada}
+          ${this.dataFormatada}
 
-        ATIVAÇÃO REALIZADA COM SUCESSO!
+          ATIVAÇÃO REALIZADA COM SUCESSO!
 
-        NOME DO CLIENTE: ${this.nomeDoCliente}
-        NOME DO TECNICO: ${this.nomeDoTecnico}
-        ${this.fttb}
-        ${this.obterIdentificacaoCtoCeip()}
-        PATRIMONIO DO ROTEADOR: ${this.fttbSelecionado}
+          NOME DO CLIENTE: ${this.nomeDoCliente}
+          NOME DO TECNICO: ${this.nomeDoTecnico}
+          ${this.fttb}
+          ${this.obterIdentificacaoCtoCeip()}
+          PATRIMONIO DO ROTEADOR: ${this.fttbSelecionado}
 
-        ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
-      `;
+          ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
+        `;
     } else {
       console.error('Erro: Equipamento não reconhecido ou informação insuficiente.');
       alert('Erro: Equipamento não reconhecido ou informação insuficiente.');
@@ -225,20 +223,17 @@ export class AtivacaoInternetComponent implements OnInit {
   }
 
 
-copiarTexto() {
-  const textoAtendimento = document.getElementById('atendimentoText')!;
-  const selecao = window.getSelection();
-  const intervalo = document.createRange();
-  intervalo.selectNodeContents(textoAtendimento);
-  selecao!.removeAllRanges();
-  selecao!.addRange(intervalo);
+  copiarTexto() {
+    const textoAtendimento = document.getElementById('atendimentoText')!;
+    const selecao = window.getSelection();
+    const intervalo = document.createRange();
+    intervalo.selectNodeContents(textoAtendimento);
+    selecao!.removeAllRanges();
+    selecao!.addRange(intervalo);
 
-  document.execCommand('copy');
-  alert('TEXTO COPIADO, ENVIE PARA O SUPORTE N1');
-}
-
-
-
+    document.execCommand('copy');
+    alert('TEXTO COPIADO, ENVIE PARA O SUPORTE N1');
+  }
 
   private obterIdentificacaoCtoCeip(): string {
     return this.semIdentificacao
@@ -247,3 +242,5 @@ copiarTexto() {
   }
 
 }
+
+

@@ -21,8 +21,8 @@ export class SelectEquipamentoService {
     return {
       mostrarInputGP_OR: true,
       mostrarInputPR: true,
-      aparelhoSelecionadoOnu: 'ONU',
-      aparelhoSelecionadoOntP: 'ONU + ROTEADOR',
+      aparelhoSelecionadoOnu: '',
+      aparelhoSelecionadoOntP: '',
     };
   }
 
