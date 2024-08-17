@@ -44,13 +44,20 @@ h1
   .modal-dialog {
     max-width: 95%;
     margin: 1.75rem auto;
+    }
+
+    .container-redeSocial-principal h1 {
+      font-size: 1.5rem;
+    }
+/* Alinhamento redesocial com h1 */
+    #container-redeSocial {
+      font-size: 1.5rem;
+    }
   }
 
   .modal-body pre {
     text-align: left;
   }
-
-}
 
 /* Responsividade Desktop */
 @media (min-width: 768px) {
@@ -59,7 +66,7 @@ h1
   }
 }
 
-/* Direto no mobile */
+/* Afeta diretamente no mobile*/
 .modal-dialog {
   max-width: 90%; /* Aumentar a largura para 90% da tela */
   min-width: 300px; /* A largura mínima continua 300px */
@@ -81,3 +88,4 @@ h1
   padding: var(--bs-modal-padding);
   font-size: 15px;
 }
+
