@@ -1,11 +1,12 @@
 <div class="accordion" id="accordionExample">
-  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+    aria-expanded="true" aria-controls="collapseOne">
     INFORMAÇÕES DO CLIENTE E DO TECNICO
   </button>
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+      data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <label for="nomeCliente">NOME DO CLIENTE</label>
         <input type="text" class="form-control" [(ngModel)]="nomeDoCliente" name="nomeDoCliente">
@@ -17,18 +18,22 @@
   </div>
 
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingTwo">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        EQUIPAMENTO
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+      aria-expanded="false" aria-controls="collapseTwo">
+      EQUIPAMENTO
+    </button>
+
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+      data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="radio-group">
-          <input type="radio" name="activation" id="wifiIntegrado" value="wifiIntegrado" (change)="selecaoEquipamento($event)">
+          <input type="radio" name="activation" id="wifiIntegrado" value="wifiIntegrado"
+            (change)="selecaoEquipamento($event)">
           <label for="wifiIntegrado">{{wifiIntegrado}}</label>
 
-          <input type="radio" name="activation" id="onuRoteador" value="onuRoteador" (change)="selecaoEquipamento($event)">
+          <input type="radio" name="activation" id="onuRoteador" value="onuRoteador"
+            (change)="selecaoEquipamento($event)">
           <label for="onuRoteador">{{ roteador }}</label>
 
           <input type="radio" name="activation" id="fttb" value="fttb" (change)="selecaoEquipamento($event)">
@@ -36,29 +41,47 @@
 
         </div>
         <!-- Inputs WIFI INTEGRADO -->
-        <input type="text" *ngIf="mostrarInputGP_WI" [(ngModel)]="aparelhoSelecionadoOnu" placeholder="FHTT/SN DA ONU" name="aparelhoSelecionado">
-        <input type="text" *ngIf="mostrarInputGP_WI" [(ngModel)]="aparelhoSelecionadoOntP" placeholder="PATRIMONIO DA ONU:" name="aparelhoSelecionadoOntP">
-        <input type="text" *ngIf="mostrarInputSenha" [(ngModel)]="senhaSelecionada" placeholder="SENHA DO WIFI" name="senhaSelecionada">
+        <input type="text" *ngIf="mostrarInputOntPatrimonio" [(ngModel)]="patrimonioOnt" placeholder="PAT ONT:"
+          name="patrimonioOnt">
+        <input type="text" *ngIf="mostrarInputMacOnt" [(ngModel)]="macOnt" placeholder="MAC ONT:" name="macOnt">
+        <input type="text" *ngIf="mostrarInputOntSn" [(ngModel)]="fhttDaOnt" placeholder="S/N:" name="fhttDaOnt">
+        <input type="text" *ngIf="mostrarInputSenhaWifiOnt" [(ngModel)]="senhaWifiOnt" placeholder="SENHA DO WIFI:"
+          name="mostrarInputSenhaWifiOnt">
 
         <!-- Inputs ONU + ROTEADOR -->
-        <input type="text" *ngIf="mostrarInputGP_OR" [(ngModel)]="aparelhoSelecionadoOnu" placeholder="FHTT/SN DA ONU" name="aparelhoSelecionado">
-        <input type="text" *ngIf="mostrarInputPR" [(ngModel)]="patrimonioRoteador" placeholder="PATRIMONIO DO ROTEADOR:" name="patrimonioRoteador">
+        <input type="text" *ngIf="mostrarInputOnuPatrimonio" [(ngModel)]="patrimonioOnu" placeholder="PAT ONU:"
+          name="patrimonioOnu">
+        <input type="text" *ngIf="mostrarInputMacOnu" [(ngModel)]="macDaOnu" placeholder="MAC ONU:" name="macDaOnu">
+        <input type="text" *ngIf="mostrarInputFhttOnu" [(ngModel)]="fhttDaOnu" placeholder="S/N:" name="fhttDaOnu">
+
+        <hr>
+
+        <input type="text" *ngIf="mostrarInputPR" [(ngModel)]="patrimonioRoteador" placeholder="PAT. ROTEADOR:"
+          name="patrimonioRoteador">
+        <input type="text" *ngIf="mostrarInputMacRot" [(ngModel)]="macRot" placeholder="MAC ROTEADOR:" name="macRot">
+        <input type="text" *ngIf="mostrarInputSnRot" [(ngModel)]="snRot" placeholder="S/N ROTEADOR:" name="snRot">
+        <input type="text" *ngIf="mostrarInputSenhaWifiOnu" [(ngModel)]="senhaWifiOnu" placeholder="SENHA DO WIFI:"
+          name="mostrarInputSenhaWifiOnu">
 
         <!-- Input FTTB -->
-        <input type="text" *ngIf="mostrarInputFTTB" [(ngModel)]="fttbSelecionado" placeholder="PATRIMONIO DO ROTEADOR:" name="senhaSelecionada">
-
+        <input type="text" *ngIf="mostrarInputFTTB" [(ngModel)]="fttbSelecionado" placeholder="PAT. ROTEADOR:"
+          name="fttbSelecionado">
+        <input type="text" *ngIf="mostrarInputSenhaFttb" [(ngModel)]="senhaWifiFttb" placeholder="SENHA DO WIFI:"
+          name="mostrarInputSenhaFttb">
 
       </div>
     </div>
   </div>
 
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingThree">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-        CTO/CEIP
-      </button>
-    </h2>
-    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+      aria-expanded="false" aria-controls="collapseThree">
+      CTO/CEIP
+    </button>
+
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+      data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <div class="radio-group">
           <input type="radio" id="cto" name="ctoSelecionada" value="cto" (change)="selecaoCtoCeip($event)">
@@ -70,40 +93,111 @@
           <input type="radio" id="switch" name="ctoSelecionada" value="switch" (change)="selecaoCtoCeip($event)">
           <label for="switch">SWITCH</label>
 
-          <input type="radio" id="ctoSemIdentificacao" name="ctoSelecionada" [(ngModel)]="semIdentificacao" value="ctoSemIdentificacao" (change)="selecaoCtoCeip($event)">
+          <input type="radio" id="ctoSemIdentificacao" name="ctoSelecionada" [(ngModel)]="semIdentificacao"
+            value="ctoSemIdentificacao" (change)="selecaoCtoCeip($event)">
           <label for="ctoSemIdentificacao">SEM IDENTIFICAÇÃO</label>
         </div>
 
-        <input type="text" *ngIf="esconderInput && mostrarInputCtoCeip" [(ngModel)]="valorCtoCeip" [placeholder]="tipoCtoCeipSelecionado" name="valorCtoCeip">
-        <input type="number" *ngIf="esconderInput || !mostrarInputCtoCeip" [(ngModel)]="valorPortaCtoCeip" placeholder="PORTA:" name="porta">
+        <input type="text" *ngIf="esconderInput && mostrarInputCtoCeip" [(ngModel)]="valorCtoCeip"
+          [placeholder]="tipoCtoCeipSelecionado" name="valorCtoCeip">
+        <input type="number" *ngIf="esconderInput || !mostrarInputCtoCeip" [(ngModel)]="valorPortaCtoCeip"
+          placeholder="PORTA:" name="porta">
       </div>
     </div>
   </div>
 
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingFour">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-        OBSERVAÇÃO
-      </button>
-    </h2>
-    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix"
+      aria-expanded="false" aria-controls="collapseSix">
+      RELATÓRIO
+    </button>
+    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+      data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <!-- Pergunta "Equipamentos fixados conforme o cliente pediu?" -->
+        <div class="mb-3">
+          <label class="form-label text-primary ">EQUIPAMENTOS FIXADOS CONFORME O CLIENTE PEDIU ?</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="fixacaoEquipamentos" id="simFixacao"
+              (change)="atualizarLocalInstalacao('SIM')">
+            <label class="form-check-label" for="simFixacao">Sim</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="fixacaoEquipamentos" id="naoFixacao"
+              (change)="atualizarLocalInstalacao('NÃO')">
+            <label class="form-check-label" for="naoFixacao">Não</label>
+          </div>
+        </div>
+
+        <!-- Campo de Texto para Local de Instalação -->
+        <input type="text" class="form-control mb-3" [(ngModel)]="localInstalacao" name="localInstalacao"
+          placeholder="Local de instalação">
+
+        <!-- Campo de Texto para Sinal -->
+        <input type="text" class="form-control mb-3" [(ngModel)]="sinalFibra" placeholder="SINAL:" name="sinalFibra">
+
+        <!-- Campo de Texto para Vaga -->
+        <input type="text" class="form-control mb-3" [(ngModel)]="vaga" placeholder="VAGA:" name="vaga">
+
+        <!-- Seção de Materiais Usados -->
+        <h5 class="text-primary mt-4"><i class="fas fa-toolbox"></i> MATERIAL USADO:</h5>
+
+        <!-- Campos Dinâmicos para Materiais -->
+        <div *ngFor="let material of materiais; let i = index" class="row align-items-center">
+          <div class="col-md-6 mb-3">
+            <input type="text" class="form-control" [(ngModel)]="material.tipo"
+              placeholder="Tipo de Material {{ i + 1 }}">
+          </div>
+          <div class="col-md-6 mb-3">
+            <input type="text" class="form-control" [(ngModel)]="material.quantidade" placeholder="Quantidade">
+          </div>
+        </div>
+
+        <!-- Botão para Adicionar Novo Material -->
+        <button type="button" class="btn btn-primary mb-3" (click)="adicionarMaterial()">Adicionar Material</button>
+
+        <!-- Botão para Remover Último Material -->
+        <button type="button" class="btn btn-danger mb-3" (click)="removerMaterial()">Remover Último Material</button>
+
+        <!-- OBS: -->
+        <div class="form-group">
+          <label for="observacao" class="text-primary"><i class="fas fa-sticky-note"> OBS:</i></label>
+          <textarea id="observacao" class="form-control" [(ngModel)]="observacao" rows="4"
+            placeholder="INFORME AQUI SE A ATIVAÇÃO FOI CONFORME O PROJETO"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+      aria-expanded="false" aria-controls="collapseFour">
+      OBSERVAÇÃO
+    </button>
+
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+      data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <h5>OBSERVAÇÃO:</h5>
-        <textarea name="textObservacao" id="textArea" [(ngModel)]="textObservacao"></textarea>
+        <textarea name="textObservacao" id="textArea" [(ngModel)]="textObservacao"
+          placeholder="ESSE CAMPO NÃO CORRESPONDE AO RELATORIO"></textarea>
       </div>
     </div>
   </div>
 
   <div class="accordion-item">
-    <h2 class="accordion-header" id="headingFive">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-        AÇÕES
-      </button>
-    </h2>
-    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive"
+      aria-expanded="false" aria-controls="collapseFive">
+      AÇÕES
+    </button>
+
+    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+      data-bs-parent="#accordionExample">
       <div class="accordion-body">
         <button type="button" class="btn btn-success" (click)="gerarAtendimento()">GERAR ATENDIMENTO</button>
-        <button type="button" class="btn btn-success">GERAR OS</button>
+        <button type="button" class="btn btn-success" (click)="gerarRelatorio()">GERAR RELATORIO</button>
         <button type="button" class="btn btn-warning" (click)="limparAtendimento()">LIMPAR</button>
       </div>
     </div>
@@ -115,14 +209,14 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="resultadoModalLabel">ENVIE ESSE ATENDIMENTO AO GRUPO TEAMS / SUPORTE N1</h5>
+        <h5 class="modal-title" id="resultadoModalLabel">ENVIE ESSE ATENDIMENTO AO SUPORTE N1</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="alert alert-secondary" role="alert">
           <pre id="atendimentoText">{{ atendimentoGerado }}</pre>
         </div>
-        <button type="button" class="btn btn-primary" (click)="copiarTexto()">Copiar Texto</button>
+        <button type="button" class="btn btn-primary" (click)="copiarTexto('atendimentoText')">Copiar Texto</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -132,5 +226,23 @@
 </div>
 
 
-
-
+<!-- Modal -->
+<div class="modal fade" id="relatorioModal" tabindex="-1" aria-labelledby="resultadoModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resultadoModalLabel">RELATORIO GERADO</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="alert alert-secondary" role="alert">
+          <pre id="relatorioText">{{ relatorioGerado }}</pre>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="copiarTexto('relatorioText')">Copiar Texto</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

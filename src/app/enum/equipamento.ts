@@ -3,3 +3,4 @@ export enum Equipamento {
   ONU_ROTEADOR = 'onuRoteador',
   FTTB = 'fttb'
 }
+

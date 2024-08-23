@@ -39,6 +39,14 @@ h1
   overflow: auto;
 }
 
+#relatorioModal .modal-dialog {
+  max-width: 40%;
+}
+
+#relatorioModal .modal-content {
+  overflow: auto;
+}
+
 /* Responsividade Mobile */
 @media (max-width: 576px) {
   .modal-dialog {
@@ -68,9 +76,9 @@ h1
 
 /* Afeta diretamente no mobile*/
 .modal-dialog {
-  max-width: 90%; /* Aumentar a largura para 90% da tela */
-  min-width: 300px; /* A largura mínima continua 300px */
-  height: 100%; /*altura da view da modal*/
+  max-width: 90%;
+  min-width: 300px;
+  height: 100%;
   margin-top: 0;
 }
 
@@ -79,7 +87,7 @@ h1
 }
 
 .modal-body pre {
-  text-align: left; /* Ajuste para center, right ou justify conforme necessário */
+  text-align: left;
 }
 
 .modal-body {
@@ -89,3 +97,28 @@ h1
   font-size: 15px;
 }
 
+#conformeClientePediu {
+  accent-color: #007bff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+#conformeClientePediu:checked {
+  accent-color: #28a745;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.form-check-label {
+  font-size: 16px;
+  color: #333;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+textarea {
+  resize: none;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -3,8 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { SelectEquipamentoService } from '../services/select-equipamento.service';
-import { Equipamento } from '../enum/equipamento';
 import { LimparAtendimentoService } from '../services/limpar-atendimento.service';
+import { Equipamento } from '../enum/equipamento';
+import { RelatorioService } from '../services/relatorio.service';  // Ajuste o caminho conforme necessário
+import { Material } from '../models/material.model';  // Ajuste o caminho conforme necessário
+import { Observable, of } from 'rxjs';
 
 declare var bootstrap: any;
 
@@ -18,41 +21,74 @@ declare var bootstrap: any;
 })
 export class MudancaEnderecoComponent implements OnInit {
 
-  dataAtual: Date = new Date();
-  dataFormatada: string = '';
 
   constructor(
     private datePipe: DatePipe,
     private selectEquipamento: SelectEquipamentoService,
-    private limparAtendimentoService: LimparAtendimentoService
+    private limparAtendimentoService: LimparAtendimentoService,
+    private relatorioService: RelatorioService
   ) { }
 
+  // Service Limpar Atendimento
   limparAtendimento() {
     this.limparAtendimentoService.limparAtendimento(this);
   }
 
   ngOnInit(): void {
-    this.dataAtual;
+    this.dataAtual = new Date;
     this.dataFormatada = this.datePipe.transform(this.dataAtual, 'dd/MM/yyyy HH:mm:ss') || '';
+
+    this.materiais = this.relatorioService.getMateriais();
+    this.observacao = this.relatorioService.getObservacao();
+    this.filteredOptions = this.relatorioService.filteredOptions;
   }
+
+  removerMaterial(): void {
+    if (this.materiais.length > 1) {
+      this.materiais.pop();
+    }
+  }
+
+  adicionarMaterial() {
+    this.relatorioService.adicionarMaterial();
+  }
+
+  filter(value: string): string[] {
+    return this.relatorioService.filter(value);
+  }
+
+  dataAtual: Date = new Date();
+  dataFormatada: string = '';
+
+  materiais: Material[] = [];
+  observacao: string = '';
+  filteredOptions: Observable<string[]> = of([]);
 
   nomeDoCliente: string = '';
   nomeDoTecnico: string = '';
 
   // Propriedades relacionadas aos equipamentos
-  aparelhoSelecionadoOnu: string = '';
-  aparelhoSelecionadoOntP: string = '';
-  patrimonioRoteador: string = '';
-  senhaSelecionada: string = '';
+
   wifiIntegrado: string = 'WIFI INTEGRADO';
-  ont: string = '';
-  ontPatrimonio: string = '';
-  senhaWifi: string = '';
+  patrimonioOnt: string = '';
+  macOnt:string = '';
+  fhttDaOnt: string = '';
+
   roteador: string = 'ONU + ROTEADOR';
-  onu: string = '';
-  onuRoteador: string = '';
+  patrimonioOnu:string = '';
+  macDaOnu: string = '';
+  fhttDaOnu:string = '';
+  patrimonioRoteador: string = '';
+  macRot: string = '';
+  snRot: string = '';
+
+
   fttb: string = 'FTTB';
   fttbSelecionado: string = '';
+
+  senhaWifiOnt: string = '';
+  senhaWifiOnu: string = '';
+  senhaWifiFttb: string = '';
 
   // Propriedades relacionadas ao CTO/CEIP
   cto: string = 'CTO:';
@@ -65,16 +101,43 @@ export class MudancaEnderecoComponent implements OnInit {
 
   textObservacao: string = '';
 
-  mostrarInputCtoCeip: boolean = true;
-  mostrarInputGP_WI: boolean = false;
-  esconderInput: boolean = false;
-  mostrarInputSenha: boolean = false;
-  mostrarInputPR: boolean = false;
-  mostrarInputFTTB: boolean = false;
+  // inputs wifi-integrado
+  mostrarInputOntPatrimonio: boolean = false;
+  mostrarInputMacOnt: boolean = false;
+  mostrarInputOntSn: boolean = false;
+  mostrarInputSenhaWifiOnt: boolean = false; // Esse input é global
 
-  mostrarInputGP_OR: boolean = false;
+   // inputs onu + roteador
+   mostrarInputOnuPatrimonio: boolean = false;
+   mostrarInputMacOnu: boolean = false;
+   mostrarInputFhttOnu: boolean = false;
+
+   mostrarInputPR: boolean = false;
+   mostrarInputMacRot: boolean = false;
+   mostrarInputSnRot:boolean = false;
+   mostrarInputSenhaWifiOnu: boolean = false;
+
+  // input unico FTTB
+   mostrarInputFTTB: boolean = false;
+   mostrarInputSenhaFttb: boolean = false;
+
+  //Controle de inputs
+  mostrarInputCtoCeip: boolean = true;
+  esconderInput: boolean = false;
+  mostrarInput: boolean = false;
+
 
   atendimentoGerado: string = '';
+
+  // Area de gerarRelatorio
+  relatorioGerado: string = '';
+
+  localInstalacao: string = '';
+  sinalFibra: string = '';
+  vaga: string = '';
+  codigo: string = this.nomeDoCliente;
+  nomeRede2G: string = '';
+  nomeRede5G: string = '';
 
   tipoEquipamentoSelecionado: Equipamento | null = null;
 
@@ -98,18 +161,33 @@ export class MudancaEnderecoComponent implements OnInit {
         break;
       default:
         this.tipoEquipamentoSelecionado = null;
-        console.log('Equipamento não reconhecido:', valorSelecionado);
         return;
     }
 
-    // Valores retornados para as propriedades do componente
-    this.mostrarInputGP_WI = config.mostrarInputGP_WI || false;
-    this.mostrarInputSenha = config.mostrarInputSenha || false;
-    this.aparelhoSelecionadoOnu = config.aparelhoSelecionadoOnu || '';
-    this.aparelhoSelecionadoOntP = config.aparelhoSelecionadoOntP || '';
-    this.senhaSelecionada = config.senhaSelecionada || '';
+    //  mostrar inputs wifi-integrado
+    this.patrimonioOnt = config.patrimonioOnt || '' ;
+    this.mostrarInputOntPatrimonio = config.mostrarInputOntPatrimonio || false;
+    this.mostrarInputMacOnt = config.mostrarInputMacOnt || false;
+    this.mostrarInputOntSn = config.mostrarInputOntSn || false;
+    this.senhaWifiOnt = config.senhaWifiOnt || '';
+
+    //  mostrar inputs onu + roteador
+    this.mostrarInputOnuPatrimonio = config.mostrarInputOnuPatrimonio || false;
+    this.mostrarInputMacOnu = config.mostrarInputMacOnu || false;
+    this.mostrarInputFhttOnu = config.mostrarInputFhttOnu || false;
     this.mostrarInputPR = config.mostrarInputPR || false;
+    this.mostrarInputMacRot = config.mostrarInputMacRot || false;
+    this.mostrarInputSnRot = config.mostrarInputSnRot || false;
     this.mostrarInputFTTB = config.mostrarInputFTTB || false;
+
+    this.patrimonioOnu = config.patrimonioOnu || '';
+    this.macDaOnu = config.macDaOnu || '';
+    this.fhttDaOnt = config.fhttDaOnt || '';
+
+    // area senha wifi
+    this.mostrarInputSenhaWifiOnt = config.mostrarInputSenhaWifiOnt || false;
+    this.mostrarInputSenhaWifiOnu = config.mostrarInputSenhaWifiOnu || false;
+    this.mostrarInputSenhaFttb = config.mostrarInputSenhaFttb || false;
   }
 
   selecaoCtoCeip(event: Event) {
@@ -146,7 +224,6 @@ export class MudancaEnderecoComponent implements OnInit {
     // Verificação básica de que os campos essenciais estão preenchidos
     if (this.nomeDoCliente && this.nomeDoTecnico) {
 
-      console.log('Entrou na condição ONT');
       this.atendimentoGerado = `
 ${this.dataFormatada}
 
@@ -160,7 +237,6 @@ ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
     } else if (this.nomeDoCliente && this.nomeDoTecnico) {
 
-      console.log('Entrou na condição ONU');
       this.atendimentoGerado = `
 ${this.dataFormatada}
 
@@ -175,7 +251,6 @@ ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
     } else if (this.nomeDoCliente && this.nomeDoTecnico) {
 
-      console.log('Entrou na condição FTTB');
       this.atendimentoGerado = `
 ${this.dataFormatada}
 
@@ -188,7 +263,6 @@ NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
 ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
     } else {
-      console.error('Erro: Equipamento não reconhecido ou informação insuficiente.');
       alert('Erro: Equipamento não reconhecido ou informação insuficiente.');
       return;
     }
@@ -201,17 +275,102 @@ ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
     }
   }
 
+  // Funcao relatorio
+  atualizarLocalInstalacao(resposta: string): void {
+    if (resposta === 'SIM') {
+      this.localInstalacao = 'CABO E EQUIPAMENTOS FIXADOS NA PAREDE DA LOJA, CONFORME O CLIENTE PEDIU.';
+    } else {
+      this.localInstalacao = ''; // Limpa o campo para que o usuário possa escrever
+    }
+  }
 
-  copiarTexto() {
-    const textoAtendimento = document.getElementById('atendimentoText')!;
+
+  gerarRelatorio() {
+    this.codigo = this.nomeDoCliente.match(/\d+/g)?.join('') || '';
+    this.nomeRede2G = `TELY_${this.codigo}_2G`;
+    this.nomeRede5G = `TELY_${this.codigo}_5G`;
+
+    this.relatorioService.observacao = this.observacao;
+
+      if(
+        this.localInstalacao &&
+        this.sinalFibra &&
+        this.vaga
+      ) {
+        this.relatorioGerado =
+        `
+  ATIVAÇÃO EFETUADA COM SUCESSO.
+
+
+  CLIENTE: ${this.nomeDoCliente}
+  __________________________________
+
+  ${this.localInstalacao}
+
+  __________________________________
+
+  ${this.obterIdentificacaoCtoCeip()}
+
+  SINAL: ${this.sinalFibra}
+
+  VAGA: ${this.vaga}
+  `;
+
+// Criar uma variável para armazenar os materiais usados
+let materiaisUsados = '';
+
+this.materiais.forEach(material => {
+  if (material.tipo.trim() !== '') {
+materiaisUsados += `
+${material.tipo.toUpperCase()}: ${material.quantidade}
+  `;
+  }
+});
+
+// Se houver materiais usados, adicione-os ao relatório
+if (materiaisUsados.trim() !== '') {
+  this.relatorioGerado += `
+__________________________________
+
+MATERIAL USADO:
+${materiaisUsados}
+  `;
+}
+
+
+
+    this.relatorioGerado += `
+__________________________________
+
+  OBS: ${this.relatorioService.getObservacao()}
+
+  TÉCNICO: ${this.nomeDoTecnico}
+    `;
+
+  } else {
+    alert('PREENCHA O RELATORIO');
+    return;
+  }
+
+
+  if (this.relatorioGerado.trim() !== '') {
+    const elementoModal = document.getElementById('relatorioModal');
+    const instanciaModal = new bootstrap.Modal(elementoModal!);
+    instanciaModal.show();
+  }
+}
+
+
+  copiarTexto(elementId: string) {
+    const textoElemento = document.getElementById(elementId)!;
     const selecao = window.getSelection();
     const intervalo = document.createRange();
-    intervalo.selectNodeContents(textoAtendimento);
+    intervalo.selectNodeContents(textoElemento);
     selecao!.removeAllRanges();
     selecao!.addRange(intervalo);
 
     document.execCommand('copy');
-    alert('TEXTO COPIADO, ENVIE PARA O SUPORTE N1');
+    alert('TEXTO COPIADO');
   }
 
 

@@ -10,28 +10,34 @@ export class SelectEquipamentoService {
 
   configurarEquipamentoWiFiIntegrado() {
     return {
-      mostrarInputGP_WI: true,
-      mostrarInputSenha: true,
-      aparelhoSelecionadoOnu: '',
-      aparelhoSelecionadoOntP: '',
+      mostrarInputOntPatrimonio: true,
+      mostrarInputMacOnt: true,
+      mostrarInputOntSn: true,
+      mostrarInputSenhaWifiOnt: true,
+      patrimonioOnt: '',
       senhaSelecionada: ''
     };
   }
 
   configurarEquipamentoOnuRoteador() {
     return {
-      mostrarInputGP_OR: true,
+      mostrarInputOnuPatrimonio: true,
+      mostrarInputMacOnu: true,
+      mostrarInputFhttOnu: true,
+      mostrarInputMacRot: true,
+      mostrarInputSnRot: true,
       mostrarInputPR: true,
-      aparelhoSelecionadoOnu: '',
-      aparelhoSelecionadoOntP: '',
+      mostrarInputSenhaWifiOnu: true,
+      patrimonioOnu: '',
     };
   }
 
   configurarEquipamentoFttb() {
     return {
+      mostrarInputMacRot: true,
+      mostrarInputSnRot: true,
       mostrarInputFTTB: true,
-      aparelhoSelecionadoOnu: 'FTTB',
-      fttbSelecionado: 'ONU + ROTEADOR'
+      mostrarInputSenhaFttb: true
     };
   }
 
