@@ -231,7 +231,7 @@ MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
 
 NOME DO CLIENTE: ${this.nomeDoCliente}
 NOME DO TECNICO: ${this.nomeDoTecnico}
-NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
+NOVA: ${this.obterIdentificacaoCtoCeip()}
 
 ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
@@ -244,7 +244,7 @@ MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
 
 NOME DO CLIENTE: ${this.nomeDoCliente}
 NOME DO TECNICO: ${this.nomeDoTecnico}
-NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
+NOVA: ${this.obterIdentificacaoCtoCeip()}
 
 
 ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
@@ -258,7 +258,7 @@ MUDANÇA DE ENDEREÇO REALIZADA COM SUCESSO!
 
 NOME DO CLIENTE: ${this.nomeDoCliente}
 NOME DO TECNICO: ${this.nomeDoTecnico}
-NOVA CTO: ${this.obterIdentificacaoCtoCeip()}
+NOVA: ${this.obterIdentificacaoCtoCeip()}
 
 ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
       `;
@@ -376,8 +376,8 @@ __________________________________
 
   private obterIdentificacaoCtoCeip(): string {
     return this.semIdentificacao
-      ? `NOVA CTO SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
-      : `NOVA ${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
+      ? `CTO SEM IDENTIFICAÇÃO - PORTA: ${this.valorPortaCtoCeip}`
+      : `${this.tipoCtoCeipSelecionado} - ${this.valorCtoCeip} - PORTA: ${this.valorPortaCtoCeip}`;
   }
 
 }
