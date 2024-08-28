@@ -230,11 +230,11 @@ export class AtivacaoInternetComponent implements OnInit {
     if (
       this.tipoEquipamentoSelecionado === Equipamento.WIFI_INTEGRADO &&
       this.nomeDoCliente &&
-      this.nomeDoTecnico &&
-      this.patrimonioOnt &&
-      this.macOnt &&
-      this.fhttDaOnt &&
-      this.senhaWifiOnt
+      this.nomeDoTecnico
+      // this.patrimonioOnt &&
+      // this.macOnt
+      // this.fhttDaOnt &&
+      // this.senhaWifiOnt
     ) {
 
       this.atendimentoGerado = `
@@ -256,14 +256,14 @@ SENHA DO WIFI: ${this.senhaWifiOnt}
     } else if (
       this.tipoEquipamentoSelecionado === Equipamento.ONU_ROTEADOR &&
       this.nomeDoCliente &&
-      this.nomeDoTecnico &&
-      this.patrimonioOnu &&
-      this.macDaOnu &&
-      this.fhttDaOnu &&
-      this.patrimonioRoteador &&
-      this.macRot &&
-      this.snRot &&
-      this.senhaWifiOnu
+      this.nomeDoTecnico
+      // this.patrimonioOnu &&
+      // this.macDaOnu &&
+      // this.fhttDaOnu &&
+      // this.patrimonioRoteador &&
+      // this.macRot &&
+      // this.snRot &&
+      // this.senhaWifiOnu
       ) {
 
       this.atendimentoGerado = `
@@ -283,11 +283,11 @@ ${this.textObservacao ? `\nOBSERVAÇÃO:\n${this.textObservacao}` : ''}
     } else if (
       this.tipoEquipamentoSelecionado === Equipamento.FTTB &&
       this.nomeDoCliente &&
-      this.nomeDoTecnico &&
-      this.macRot &&
-      this.snRot &&
-      this.fttbSelecionado &&
-      this.senhaWifiFttb
+      this.nomeDoTecnico
+      // this.macRot &&
+      // this.snRot &&
+      // this.fttbSelecionado &&
+      // this.senhaWifiFttb
     ) {
 
       this.atendimentoGerado = `
