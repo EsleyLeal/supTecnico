@@ -1,6 +1,6 @@
 # Otimização do Processo de Atendimento Técnico
 
-# Obs: Meu trabalho nessa empresa era prestar atendimento ao técnico, configurando o equipamento dele. Eu trabalhava na central de operações de suporte, realizando a configuração de ONU, roteadores, PPPOE, etc. Ou seja, identifiquei um problema e resolvi.
+ Obs: Meu trabalho nessa empresa era prestar atendimento ao técnico, configurando o equipamento dele. Eu trabalhava na central de operações de suporte, realizando a configuração de ONU, roteadores, PPPOE, etc. Ou seja, identifiquei um problema e resolvi.
 
 
 ## Descrição do Projeto
